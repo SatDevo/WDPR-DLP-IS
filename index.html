@@ -5,28 +5,34 @@
     <meta name="referrer" content="no-referrer" />
     <title>Payement redirection</title>
   </head>
-  <body>
-    Loading...
-
     <script type="text/javascript">
-      var ua = navigator.userAgent.toLowerCase()
-      let params = new URL(document.location).searchParams
-      var isIOS = ua.includes('mac') && 'ontouchend' in document
-      var isAndroid = ua.includes('android')
-      let screen = params.get('screen')
-      let status = params.get('status')
-      let scheme = 'dlp://'
+      function start() {
+        document.addEventListener("DOMContentLoaded", function(event) {
+          var ua = navigator.userAgent.toLowerCase()
+          let params = new URL(document.location).searchParams
+          var isIOS = ua.includes('mac') && 'ontouchend' in document
+          var isAndroid = ua.includes('android')
+          let screen = params.get('screen')
+          let status = params.get('status')
+          let scheme = 'dlp://'
 
-      const result = {}
-      for (const [key, value] of params) {
-        result[key] = value
-      }
+          const result = {}
+          for (const [key, value] of params) {
+            result[key] = value
+          }
 
-      if (screen) {
-        window.location.replace(`${scheme}${screen.trim()}?params=${result}&status=${status}`)
-      } else {
-        window.location.replace(`${scheme}?params=${result}&status=${status}`)
-      }
+          if (screen) {
+            window.location.href = `${scheme}${screen.trim()}?params=${result}&status=${status}`
+          } else {
+            window.location.href = `${scheme}?params=${result}&status=${status}`
+          }
+          //document.location.reload()
+          return false;
+       });
+    }   
+
     </script>
+  <body  onLoad="start();">
+    Loading...
   </body>
 </html>
