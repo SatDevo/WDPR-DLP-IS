@@ -1,0 +1,32 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0" />
+    <meta name="referrer" content="no-referrer" />
+    <title>Payement redirection</title>
+  </head>
+  <body>
+    Loading...
+
+    <script type="text/javascript">
+      var ua = navigator.userAgent.toLowerCase()
+      let params = new URL(document.location).searchParams
+      var isIOS = ua.includes('mac') && 'ontouchend' in document
+      var isAndroid = ua.includes('android')
+      let screen = params.get('screen')
+      let status = params.get('status')
+      let scheme = 'dlp://'
+
+      const result = {}
+      for (const [key, value] of params) {
+        result[key] = value
+      }
+
+      if (screen) {
+        window.location.href = `${scheme}${screen.trim()}?params=${result}&status=${status}`
+      } else {
+        window.location.href = `${scheme}?params=${result}&status=${status}`
+      }
+    </script>
+  </body>
+</html>
