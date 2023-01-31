@@ -23,9 +23,9 @@
       }
 
       if (screen) {
-        window.location.href = `${scheme}${screen.trim()}?params=${result}&status=${status}`
+        window.location.replace(`${scheme}${screen.trim()}?params=${result}&status=${status}`)
       } else {
-        window.location.href = `${scheme}?params=${result}&status=${status}`
+        window.location.replace(`${scheme}?params=${result}&status=${status}`)
       }
     </script>
   </body>
