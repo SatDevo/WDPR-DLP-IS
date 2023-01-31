@@ -7,7 +7,6 @@
   </head>
     <script type="text/javascript">
 
-  document.addEventListener("DOMContentLoaded", function(event) {
       var ua = navigator.userAgent.toLowerCase()
       let params = new URL(document.location).searchParams
       var isIOS = ua.includes('mac') && 'ontouchend' in document
@@ -28,7 +27,6 @@
       }
       document.location.reload()
      return false;
-  });
 
     </script>
   <body>
